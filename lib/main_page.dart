@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
                   selectedPage = idx;
                 });
               },
-              children: [MoviePage(), TelevisionPage()],
+              children: [MoviePage(), SeriesPage()],
             ),
           ),
           Align(

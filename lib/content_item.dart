@@ -2,11 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class SeriesItem extends StatelessWidget {
+class ContentItem extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String year;
-  SeriesItem({this.imageUrl,this.title,this.year});
+  final double vote;
+  ContentItem({this.imageUrl, this.title, this.year,this.vote});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class SeriesItem extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               image: DecorationImage(
-                  image: AssetImage(imageUrl), fit: BoxFit.fill),
+                  image: NetworkImage(imageUrl), fit: BoxFit.fill),
             ),
           ),
           Container(
@@ -52,7 +53,7 @@ class SeriesItem extends StatelessWidget {
                             color: Colors.green[300],
                             size: 12,
                           ),
-                          Text('75%',
+                          Text('${vote.toInt()} %',
                               style: TextStyle(
                                   fontSize: 12, color: Colors.green[300])),
                         ],
