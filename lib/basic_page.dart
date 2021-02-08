@@ -22,7 +22,7 @@ class BasicPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            color: Colors.white,
+            color: Colors.red,
           ),
           SafeArea(child: Container(color: backColor ?? Colors.white)),
           SafeArea(

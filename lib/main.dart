@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db_app/bloc/movie_bloc.dart';
 import 'package:movie_db_app/bloc/series_bloc.dart';
-import 'package:movie_db_app/main_page.dart';
+import 'package:movie_db_app/movie_detail_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           
         ],
         child: MaterialApp(
-          home: MainPage(),
+          home: MovieDetailPage(),
           debugShowCheckedModeBanner: false,
         ));
   }
