@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:movie_db_app/basic_page.dart';
 import 'package:movie_db_app/bloc/movie_bloc.dart';
 import 'package:movie_db_app/content_item.dart';
+import 'package:movie_db_app/movie_detail_page.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MoviePage extends StatefulWidget {
@@ -13,7 +15,7 @@ class MoviePage extends StatefulWidget {
 class _MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
-   context.read<MovieBloc>().add(GetMovie());
+    context.read<MovieBloc>().add(GetMovie());
     return Scaffold(
       body: BasicPage(
           header: "Movie ",
@@ -32,11 +34,16 @@ class _MoviePageState extends State<MoviePage> {
                         childAspectRatio:
                             (MediaQuery.of(context).size.width / 2 - 20) / 210,
                         children: state.movies
-                            .map((e) => ContentItem(
-                                  imageUrl: e.posterPath,
-                                  title: e.originalTitle,
-                                  year:e.year,
-                                  vote: e.vote,
+                            .map((e) => GestureDetector(
+                                  onTap: () {
+                                    Get.to(MovieDetailPage(e));
+                                  },
+                                  child: ContentItem(
+                                    imageUrl: e.posterPath,
+                                    title: e.originalTitle,
+                                    year: e.year,
+                                    vote: e.vote,
+                                  ),
                                 ))
                             .toList(),
                       )

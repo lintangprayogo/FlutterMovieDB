@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:movie_db_app/basic_page.dart';
 import 'package:movie_db_app/bloc/series_bloc.dart';
 import 'package:movie_db_app/content_item.dart';
+import 'package:movie_db_app/series_detail_page.dart';
 import 'package:supercharged/supercharged.dart';
 
 class SeriesPage extends StatefulWidget {
@@ -13,7 +15,7 @@ class SeriesPage extends StatefulWidget {
 class _SeriesPageState extends State<SeriesPage> {
   @override
   Widget build(BuildContext context) {
-   context.read<SeriesBloc>().add(GetSeries());
+    context.read<SeriesBloc>().add(GetSeries());
     return Scaffold(
       body: BasicPage(
           header: "Series ",
@@ -32,11 +34,16 @@ class _SeriesPageState extends State<SeriesPage> {
                         childAspectRatio:
                             (MediaQuery.of(context).size.width / 2 - 20) / 210,
                         children: state.serieses
-                            .map((e) => ContentItem(
-                                  imageUrl: e.posterPath,
-                                  title: e.originalName,
-                                  year:e.year,
-                                  vote: e.vote,
+                            .map((e) => GestureDetector(
+                                  onTap: () {
+                                    Get.to(SeriesDetailPage(e));
+                                  },
+                                  child: ContentItem(
+                                    imageUrl: e.posterPath,
+                                    title: e.originalName,
+                                    year: e.year,
+                                    vote: e.vote,
+                                  ),
                                 ))
                             .toList(),
                       )

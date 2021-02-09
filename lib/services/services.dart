@@ -7,6 +7,7 @@ import 'package:movie_db_app/model/models.dart';
 
 part 'movie_service.dart';
 part 'series_service.dart';
+part 'video_service.dart';
 
 
 String baseURL = "https://api.themoviedb.org/3/";

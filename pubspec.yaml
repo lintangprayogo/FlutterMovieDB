@@ -23,11 +23,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cached_network_image: ^2.5.0
   cupertino_icons: ^1.0.0
   equatable: ^1.2.5
   flutter_bloc: ^6.1.1
+  get: ^3.15.0
   google_fonts: ^1.1.1
+  no_context_navigation: ^1.0.5
   supercharged: ^1.11.1
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:

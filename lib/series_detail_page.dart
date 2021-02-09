@@ -7,16 +7,16 @@ import 'package:movie_db_app/model/models.dart';
 import 'package:movie_db_app/video_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MovieDetailPage extends StatefulWidget {
-  final MovieData movie;
-  MovieDetailPage(this.movie);
+class SeriesDetailPage extends StatefulWidget {
+  final SeriesData series;
+  SeriesDetailPage(this.series);
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  _SeriesDetailPageState createState() => _SeriesDetailPageState();
 }
 
-class _MovieDetailPageState extends State<MovieDetailPage> {
+class _SeriesDetailPageState extends State<SeriesDetailPage> {
   Widget build(BuildContext context) {
-    context.read<VideoMovieBloc>().add(GetVideo("movie", widget.movie.id));
+    context.read<VideoMovieBloc>().add(GetVideo("tv", widget.series.id));
     return Scaffold(
         body: Stack(
       children: [
@@ -51,7 +51,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       width: MediaQuery.of(context).size.width - 62,
                       child: Center(
                         child: Text(
-                          "${widget.movie.originalTitle}",
+                          "${widget.series.originalName}",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(color: Colors.black, fontSize: 20),
                           maxLines: 1,
@@ -61,8 +61,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                   ],
                 ),
               ),
-              Container(
-                height: MediaQuery.of(context).size.height - 75,
+              SizedBox(
+                height: MediaQuery.of(context).size.height - 100,
                 child: ListView(children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       Stack(
                         children: [
                           CachedNetworkImage(
-                            imageUrl: "${widget.movie.backdropPath}",
+                            imageUrl: "${widget.series.backdropPath}",
                             imageBuilder: (context, imageProvider) => Container(
                               height: 200,
                               width: (MediaQuery.of(context).size.width),
@@ -101,7 +101,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             ),
                           ),
                           CachedNetworkImage(
-                            imageUrl: "${widget.movie.posterPath}",
+                            imageUrl: "${widget.series.posterPath}",
                             imageBuilder: (context, imageProvider) => Container(
                               width: 100,
                               height: 120,
@@ -137,7 +137,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       Container(
                         margin: EdgeInsets.only(left: 24, top: 10),
                         child: Text(
-                          "${widget.movie.originalTitle}",
+                          "${widget.series.originalName}",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: TextStyle(
@@ -147,14 +147,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       Container(
                         margin: EdgeInsets.only(left: 24),
                         child: Text(
-                          "Realese Date: ${widget.movie.realeseDate}",
+                          "First Air Date: ${widget.series.airDate}",
                           style: TextStyle(fontSize: 14),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 24),
                         child: Text(
-                          "Score: ${widget.movie.vote.toInt()} %",
+                          "Score: ${widget.series.vote.toInt()} %",
                           style: TextStyle(fontSize: 14),
                         ),
                       ),
@@ -169,7 +169,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       Container(
                         margin: EdgeInsets.only(left: 24, right: 24),
                         child: Text(
-                          "${widget.movie.overview}",
+                          "${widget.series.overview}",
                           style: TextStyle(fontSize: 16),
                           textAlign: TextAlign.justify,
                         ),
